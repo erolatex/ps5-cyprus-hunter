@@ -13,7 +13,7 @@ class LoginPage(BasePage):
         login_field = self.browser.find_element(*LoginPageLocators.LOGIN_EMAIL_FIELD)
         login_field.send_keys(email)
 
-        pass_field = self.browser.find_element(*LoginPageLocators.LOGIN_EMAIL_FIELD)
+        pass_field = self.browser.find_element(*LoginPageLocators.LOGIN_PASSWORD_FIELD)
         pass_field.send_keys(password)
 
         register_button = self.browser.find_element(*LoginPageLocators.LOGIN_BUTTON)

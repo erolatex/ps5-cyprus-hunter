@@ -19,8 +19,8 @@ def browser(request):
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         options.to_capabilities()
-        browser = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub', options=options)
-
+        # browser = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub', options=options)
+        browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         print("\nstart firefox browser for test..")
         fp = webdriver.FirefoxProfile()

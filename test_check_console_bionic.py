@@ -6,7 +6,6 @@ from telegram import send_keep_alive
 from telegram import send
 from pages.product_page import ProductPage
 from pages.login_page import LoginPage
-from dotenv import load_dotenv, find_dotenv
 
 xbox = "https://bionic.com.cy/products/xbox-series-x-1tb-ssd-with-1-controller"
 ps5digital = "https://bionic.com.cy/products/sony-playstation-5-ps5-digital-edition"
@@ -31,10 +30,10 @@ class TestCheckConsoleBionic(object):
 
     def test_consoles_bionic(self, browser):
         try:
-            send_keep_alive()
+            send_keep_alive('I\'m alive. Bionic')
             for product in consoles:
                 page = ProductPage(browser, product)
                 page.open()
                 page.check_product_availability()
         except:
-            send('me', 'I died')
+            send('me', 'I\'m died. Bionic')
