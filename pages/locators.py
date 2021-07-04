@@ -17,7 +17,7 @@ class LoginPageLocators(object):
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "button[type=submit]")
     LOGIN_EMAIL_FIELD = (By.CSS_SELECTOR, "[name='spree_user[email]']")
-    LOGIN_PASSWORD_FIELD = (By.CSS_SELECTOR, "[name='spree_user[email]']")
+    LOGIN_PASSWORD_FIELD = (By.CSS_SELECTOR, "[name='spree_user[password]']")
 
 
 class ProductPageLocators(object):
