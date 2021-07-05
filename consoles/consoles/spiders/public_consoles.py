@@ -3,6 +3,7 @@ import sys
 
 import scrapy
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -25,12 +26,14 @@ class PublicConsolesSpider(scrapy.Spider):
     allowed_domains = ['www.public-cyprus.com.cy']
     start_urls = consoles
     options = webdriver.ChromeOptions()
-    # options.add_argument("--headless")
+    options.add_argument("--headless")
     desired_capabilities = options.to_capabilities()
 
     def parse(self, response):
         send_keep_alive("I'm alive. Public")
-        driver = webdriver.Chrome(desired_capabilities=self.desired_capabilities)
+        # driver = webdriver.Chrome(desired_capabilities=self.desired_capabilities)
+        driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub',
+                                  desired_capabilities=self.desired_capabilities)
         driver.implicitly_wait(10)
         driver.get(response.url)
         wait = WebDriverWait(driver, 10)
