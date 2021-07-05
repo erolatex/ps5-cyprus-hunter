@@ -3,3 +3,5 @@ pytest~=6.2.4
 requests~=2.25.1
 python-dotenv~=0.18.0
 Scrapy~=2.5.0
+lxml~=4.6.3
+itemadapter~=0.2.0
