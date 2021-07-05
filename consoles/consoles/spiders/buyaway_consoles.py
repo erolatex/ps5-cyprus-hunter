@@ -39,4 +39,4 @@ class BuyawayConsolesSpider(scrapy.Spider):
                     send('me', "\n".join(scraped_info.values()) + '\n' + response.url)
                     send('chat', "\n".join(scraped_info.values()) + '\n' + response.url)
         except:
-            send('me', 'I\'m died. Buyaway')
+            send('me', 'I died. Buyaway')

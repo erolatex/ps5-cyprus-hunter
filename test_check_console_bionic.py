@@ -36,4 +36,4 @@ class TestCheckConsoleBionic(object):
                 page.open()
                 page.check_product_availability()
         except:
-            send('me', 'I\'m died. Bionic')
+            send('me', 'I died. Bionic')

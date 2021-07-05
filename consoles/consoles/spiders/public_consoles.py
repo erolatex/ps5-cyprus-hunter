@@ -55,5 +55,5 @@ class PublicConsolesSpider(scrapy.Spider):
                 send('me', "\n".join(item.values()) + '\n' + response.url)
             driver.quit()
         except:
-            send('me', 'I\'m died. Public')
+            send('me', 'I died. Public')
             driver.quit()

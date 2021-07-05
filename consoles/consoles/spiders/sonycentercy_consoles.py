@@ -39,4 +39,4 @@ class SonycentercyConsolesSpider(scrapy.Spider):
                     send('me', "\n".join(scraped_info.values()) + '\n' + response.url)
                     send('chat', "\n".join(scraped_info.values()) + '\n' + response.url)
         except:
-            send('me', 'I\'m died. Sonycentercy')
+            send('me', 'I died. Sonycentercy')
