@@ -25,7 +25,7 @@ class PublicConsolesSpider(scrapy.Spider):
     allowed_domains = ['www.public-cyprus.com.cy']
     start_urls = consoles
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
     desired_capabilities = options.to_capabilities()
 
     def parse(self, response):
@@ -34,8 +34,8 @@ class PublicConsolesSpider(scrapy.Spider):
         driver.implicitly_wait(10)
         driver.get(response.url)
         wait = WebDriverWait(driver, 10)
-        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".product-title")))
-        wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ".soldbypublic")))
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".product-title")))
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".soldbypublic")))
 
         title = driver.find_element_by_css_selector(".product-title").text
         availability = driver.find_element_by_css_selector(".soldbypublic").text
@@ -48,7 +48,7 @@ class PublicConsolesSpider(scrapy.Spider):
                 'url': response.url,
             }
             if item['availability'] != 'εξαντλήθηκε!':
-                send('me', "\n".join(item.values()))
                 send('chat', "\n".join(item.values()) + '\n' + response.url)
+                send('me', "\n".join(item.values()) + '\n' + response.url)
         except:
             send('me', 'I\'m died. Public')
