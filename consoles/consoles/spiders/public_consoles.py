@@ -3,7 +3,6 @@ import sys
 
 import scrapy
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -20,6 +19,8 @@ testProduct = "https://www.public-cyprus.com.cy/product/tileorasi-samsung-qled-8
 
 consoles = [xbox, ps5digital, ps5disc, ps5ratchet]
 
+send_keep_alive("I'm alive. Public")
+
 
 class PublicConsolesSpider(scrapy.Spider):
     name = 'public_consoles'
@@ -30,7 +31,6 @@ class PublicConsolesSpider(scrapy.Spider):
     desired_capabilities = options.to_capabilities()
 
     def parse(self, response):
-        send_keep_alive("I'm alive. Public")
         # driver = webdriver.Chrome(desired_capabilities=self.desired_capabilities)
         driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub',
                                   desired_capabilities=self.desired_capabilities)
@@ -53,5 +53,7 @@ class PublicConsolesSpider(scrapy.Spider):
             if item['availability'] != 'εξαντλήθηκε!':
                 send('chat', "\n".join(item.values()) + '\n' + response.url)
                 send('me', "\n".join(item.values()) + '\n' + response.url)
+            driver.quit()
         except:
             send('me', 'I\'m died. Public')
+            driver.quit()

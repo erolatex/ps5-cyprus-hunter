@@ -13,6 +13,8 @@ testProduct = "https://buyaway.net/product/pop-184-rocks-freddie-mercury-king/"
 
 consoles = [ps5digital, ps5disc, xbox]
 
+send_keep_alive("I'm alive. Buyaway")
+
 
 class BuyawayConsolesSpider(scrapy.Spider):
     name = 'buyaway_consoles'
@@ -20,7 +22,6 @@ class BuyawayConsolesSpider(scrapy.Spider):
     start_urls = consoles
 
     def parse(self, response):
-        send_keep_alive("I'm alive. Buyaway")
         try:
             product_name = response.css('.product_title::text').extract()
             price_range = response.css('.price .amount::text').extract()
