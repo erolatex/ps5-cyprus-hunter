@@ -16,7 +16,7 @@ ps5disc = "https://www.gamersboulevard.com/products/details?name=PlayStation%205
 
 testProduct = "https://www.gamersboulevard.com/products/details?name=G.I.%20Joe%20Retro%20Collection%20Series%20Duke%20Action%20Figure%2010%20cm%202021"
 
-consoles = [xbox, ps5digital, ps5disc, testProduct]
+consoles = [xbox, ps5digital, ps5disc]
 
 
 # send_keep_alive("I'm alive. Gamersboulevard")
