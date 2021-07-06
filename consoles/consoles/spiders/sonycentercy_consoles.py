@@ -13,7 +13,7 @@ testProduct = "https://sonycentercy.com/in-ear/2516-sony-mdr-e9lp-headphones-ora
 
 consoles = [ps5digital, ps5disc]
 
-send_keep_alive("I'm alive. Sonycentercy")
+# send_keep_alive("I'm alive. Sonycentercy")
 
 
 class SonycentercyConsolesSpider(scrapy.Spider):

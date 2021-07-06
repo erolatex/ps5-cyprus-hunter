@@ -19,7 +19,7 @@ testProduct = "https://www.public-cyprus.com.cy/product/tileorasi-samsung-qled-8
 
 consoles = [xbox, ps5digital, ps5disc, ps5ratchet]
 
-send_keep_alive("I'm alive. Public")
+# send_keep_alive("I'm alive. Public")
 
 
 class PublicConsolesSpider(scrapy.Spider):

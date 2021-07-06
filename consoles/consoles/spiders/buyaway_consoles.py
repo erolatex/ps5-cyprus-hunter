@@ -13,7 +13,7 @@ testProduct = "https://buyaway.net/product/pop-184-rocks-freddie-mercury-king/"
 
 consoles = [ps5digital, ps5disc, xbox]
 
-send_keep_alive("I'm alive. Buyaway")
+# send_keep_alive("I'm alive. Buyaway")
 
 
 class BuyawayConsolesSpider(scrapy.Spider):

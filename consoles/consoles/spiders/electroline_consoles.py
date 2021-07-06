@@ -15,7 +15,7 @@ testProduct = "https://www.electroline.com.cy/products/computing/gaming130/acces
 
 consoles = [ps5digital, ps5disc]
 
-send_keep_alive("I'm alive. Electroline")
+# send_keep_alive("I'm alive. Electroline")
 
 
 class ElectrolineConsolesSpider(scrapy.Spider):
