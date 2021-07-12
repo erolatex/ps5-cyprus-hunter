@@ -16,7 +16,7 @@ ps5disc = "https://www.stephanis.com.cy/en/products/gaming/gaming-consoles/plays
 
 testProduct = "https://www.stephanis.com.cy/en/products/gaming/gaming-consoles/playstation/367258"
 
-consoles = [xbox, ps5digital, ps5disc, testProduct]
+consoles = [xbox, ps5digital, ps5disc]
 
 
 # send_keep_alive("I'm alive. Stephanis")
