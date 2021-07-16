@@ -14,10 +14,11 @@ xbox = "https://www.public-cyprus.com.cy/product/gaming/consoles/xbox-series-x/m
 ps5digital = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-playstation-5-digital-edition/prod10810253pp/"
 ps5disc = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-playstation-5-konsola-leyko/prod10238545pp/"
 ps5ratchet = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-playstation-5-and-ratchet-and-clank:-rift-apart-bundle/prod13802366pp/"
+ps5spider = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-playstation-5-plus-destruction-allstars-plus-marvels-spider-man:-miles-morales/prod13923508pp/"
 
 testProduct = "https://www.public-cyprus.com.cy/product/tileorasi-samsung-qled-85-4k-qe85q60t/prod10634466pp/"
 
-consoles = [xbox, ps5digital, ps5disc, ps5ratchet]
+consoles = [xbox, ps5digital, ps5disc, ps5ratchet, ps5spider]
 
 # send_keep_alive("I'm alive. Public")
 
@@ -50,7 +51,7 @@ class PublicConsolesSpider(scrapy.Spider):
                 'availability': availability,
                 'url': response.url,
             }
-            if item['availability'] != 'εξαντλήθηκε!':
+            if item['availability'] != 'εξαντλήθηκε!' and item['availability'] != 'προσωρινά εξαντλημένο':
                 send('chat', "\n".join(item.values()) + '\n' + response.url)
                 send('me', "\n".join(item.values()) + '\n' + response.url)
             driver.quit()
