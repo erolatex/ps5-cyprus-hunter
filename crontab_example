@@ -1,0 +1,8 @@
+* * * * * cd /Users/erolatex/PycharmProjects/ps5-cyprus-hunter && source venv/bin/activate && pytest
+* * * * * cd /Users/erolatex/PycharmProjects/ps5-cyprus-hunter && source venv/bin/activate && cd consoles && scrapy crawl buyaway_consoles
+* * * * * cd /Users/erolatex/PycharmProjects/ps5-cyprus-hunter && source venv/bin/activate && cd consoles && scrapy crawl electroline_consoles
+* * * * * cd /Users/erolatex/PycharmProjects/ps5-cyprus-hunter && source venv/bin/activate && cd consoles && scrapy crawl gamersboulevard_consoles
+* * * * * cd /Users/erolatex/PycharmProjects/ps5-cyprus-hunter && source venv/bin/activate && cd consoles && scrapy crawl kotsovolos_consoles
+* * * * * cd /Users/erolatex/PycharmProjects/ps5-cyprus-hunter && source venv/bin/activate && cd consoles && scrapy crawl public_consoles
+* * * * * cd /Users/erolatex/PycharmProjects/ps5-cyprus-hunter && source venv/bin/activate && cd consoles && scrapy crawl sonycentercy_consoles
+* * * * * cd /Users/erolatex/PycharmProjects/ps5-cyprus-hunter && source venv/bin/activate && cd consoles && scrapy crawl stephanis_consoles
