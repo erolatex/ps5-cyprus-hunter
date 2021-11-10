@@ -36,11 +36,12 @@ class ElectrolineConsolesSpider(scrapy.Spider):
                 scraped_info = {
                     'product_name': item[0],
                     'price_range': strip(item[1]),
-                    'availability_online': 'Not available online' if strip(
-                        item[2]) == 'Mη διαθέσιμο για αποστολή' else "Available online",
-                    'availability_stores': 'Not available in stores' if strip(
-                        item[3]) == 'Mη διαθέσιμο στα καταστήματα' else "Available in stores",
-                }
+                    'availability_online': 'Not available online'
+                    if (strip(item[2]) == 'Not available online' or strip(item[2]) == 'Mη διαθέσιμο για αποστολή')
+                    else "Available online",
+                    'availability_stores': 'Not available in stores'
+                    if (strip(item[3]) == 'Not available in stores' or strip(item[3]) == 'Mη διαθέσιμο στα καταστήματα')
+                    else "Available in stores", }
 
                 if scraped_info['availability_online'] != 'Not available online' \
                         or scraped_info['availability_stores'] != 'Not available in stores':
