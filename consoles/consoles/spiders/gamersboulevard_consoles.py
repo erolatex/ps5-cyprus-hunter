@@ -12,11 +12,12 @@ from telegram import send, send_keep_alive
 
 xbox = "https://www.gamersboulevard.com/products/details?name=Xbox%20Series%20X%20Console"
 ps5digital = "https://www.gamersboulevard.com/products/details?name=PlayStation%205%20Digital"
-ps5disc = "https://www.gamersboulevard.com/products/details?name=PlayStation%205"
+ps5disc = "https://www.gamersboulevard.com/products/details?name=PlayStation%205%20with%20Ratchet%20%26%20Clank%20Bundle"
+ps5disc2 = "https://www.gamersboulevard.com/products/details?name=PlayStation%205%20with%20second%20controller"
 
 testProduct = "https://www.gamersboulevard.com/products/details?name=G.I.%20Joe%20Retro%20Collection%20Series%20Duke%20Action%20Figure%2010%20cm%202021"
 
-consoles = [xbox, ps5digital, ps5disc]
+consoles = [xbox, ps5digital, ps5disc, ps5disc2]
 
 
 # send_keep_alive("I'm alive. Gamersboulevard")

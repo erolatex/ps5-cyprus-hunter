@@ -3,6 +3,7 @@ import sys
 
 import scrapy
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,7 +17,7 @@ ps5disc = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-pla
 ps5ratchet = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-playstation-5-and-ratchet-and-clank:-rift-apart-bundle/prod13802366pp/"
 ps5spider = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-playstation-5-plus-destruction-allstars-plus-marvels-spider-man:-miles-morales/prod13923508pp/"
 
-testProduct = "https://www.public-cyprus.com.cy/product/tileorasi-samsung-qled-85-4k-qe85q60t/prod10634466pp/"
+testProduct = "https://www.public.cy/product/gaming/games/xbox-series-x/xbox-series-x-game--forza-horizon-5/1638610"
 
 consoles = [xbox, ps5digital, ps5disc, ps5ratchet, ps5spider]
 
@@ -38,20 +39,26 @@ class PublicConsolesSpider(scrapy.Spider):
         driver.implicitly_wait(10)
         driver.get(response.url)
         wait = WebDriverWait(driver, 10)
-        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".product-title")))
-        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".soldbypublic")))
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h1")))
+        wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "app-product-availability div[class*='typography']")))
+        try:
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, '//app-product-availability//div[@class="mdc-typography--body2" and text() != ""]')))
+        except TimeoutException:
+            send('me', "Element waiting error on page " + '\n' + response.url)
+            raise Exception('Unable to find text in this element after waiting 10 seconds')
 
-        title = driver.find_element_by_css_selector(".product-title").text
-        availability = driver.find_element_by_css_selector(".soldbypublic").text
+        title = driver.find_element_by_css_selector("h1").text
+        availability = driver.find_element_by_css_selector("app-product-availability div[class*='typography']").text
+
         try:
 
             item = {
                 'product_name': title,
                 # 'price_range': item[1],
                 'availability': availability,
-                'url': response.url,
             }
-            if item['availability'] != 'εξαντλήθηκε!' and item['availability'] != 'προσωρινά εξαντλημένο':
+            if item['availability'] != 'εξαντλήθηκε' and item['availability'] != 'προσωρινά εξαντλημένο':
                 send('chat', "\n".join(item.values()) + '\n' + response.url)
                 send('me', "\n".join(item.values()) + '\n' + response.url)
             driver.quit()
