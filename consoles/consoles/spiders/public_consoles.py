@@ -17,7 +17,7 @@ ps5disc = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-pla
 ps5ratchet = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-playstation-5-and-ratchet-and-clank:-rift-apart-bundle/prod13802366pp/"
 ps5spider = "https://www.public-cyprus.com.cy/product/gaming/consoles/ps5/sony-playstation-5-plus-destruction-allstars-plus-marvels-spider-man:-miles-morales/prod13923508pp/"
 
-testProduct = "https://www.public.cy/product/gaming/games/xbox-series-x/xbox-series-x-game--forza-horizon-5/1638610"
+testProduct = "https://www.public.cy/product/gaming/games/xbox-series-x/xbox-series-game--nba-2k22/1628518"
 
 consoles = [xbox, ps5digital, ps5disc, ps5ratchet, ps5spider]
 
@@ -36,9 +36,9 @@ class PublicConsolesSpider(scrapy.Spider):
         # driver = webdriver.Chrome(desired_capabilities=self.desired_capabilities)
         driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub',
                                   desired_capabilities=self.desired_capabilities)
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(15)
         driver.get(response.url)
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 15)
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "h1")))
         wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "app-product-availability div[class*='typography']")))
         try:
@@ -50,6 +50,7 @@ class PublicConsolesSpider(scrapy.Spider):
 
         title = driver.find_element_by_css_selector("h1").text
         availability = driver.find_element_by_css_selector("app-product-availability div[class*='typography']").text
+        buy_clickable = driver.find_element_by_xpath("(//span[text()='Αγόρασέ το']/../../button[not(@disabled)])[1]").is_displayed()
 
         try:
 
@@ -59,8 +60,9 @@ class PublicConsolesSpider(scrapy.Spider):
                 'availability': availability,
             }
             if item['availability'] != 'εξαντλήθηκε' and item['availability'] != 'προσωρινά εξαντλημένο':
-                send('chat', "\n".join(item.values()) + '\n' + response.url)
-                send('me', "\n".join(item.values()) + '\n' + response.url)
+                if buy_clickable:
+                    send('chat', "\n".join(item.values()) + '\n' + response.url)
+                    send('me', "\n".join(item.values()) + '\n' + response.url)
             driver.quit()
         except:
             send('me', 'I died. Public')
